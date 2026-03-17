@@ -276,6 +276,41 @@ a.click();
 
 }
 
+document.addEventListener("keydown",e=>{
+
+if(e.target.tagName==="INPUT")return;
+
+if(e.code==="Space"){
+e.preventDefault();
+if(player.paused) player.play();
+else player.pause();
+}
+
+if(e.key==="r" || e.key==="R") startRec();
+if(e.key==="s" || e.key==="S") stopRec();
+if(e.key==="c" || e.key==="C") cutSelection();
+
+if(e.key==="+"){
+zoom++;
+document.getElementById("zoom").value=zoom;
+drawWave();
+}
+
+if(e.key==="-" && zoom>1){
+zoom--;
+document.getElementById("zoom").value=zoom;
+drawWave();
+}
+
+if(e.key==="Delete") cutSelection();
+
+if(e.ctrlKey && e.key==="s"){
+e.preventDefault();
+download();
+}
+
+});
+
 </script>
 
 </body>
